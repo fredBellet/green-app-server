@@ -19,9 +19,9 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     // Calculate the score for the registered user
-    const score = await Score.calculateScore(user._id);
+    // const score = await Score.calculateScore(user._id);
 
-    res.status(200).json({ message: 'Registration successful', score });
+    res.status(200).json({ message: 'Registration successful'});
   } catch (error) {
     console.error('Failed to register user:', error);
     res.status(500).json({ message: 'Registration failed' });
@@ -41,9 +41,9 @@ router.post('/login', async (req, res) => {
       // Authentication successful
 
       // Calculate the score for the authenticated user
-      const score = await Score.calculateScore(user._id);
+      // const score = await Score.calculateScore(user._id);
 
-      res.status(200).json({ success: true, message: 'Login successful', score });
+      res.status(200).json({ success: true, message: 'Login successful'});
     } else {
       // Authentication failed
       res.status(401).json({ success: false, message: 'Invalid credentials' });
@@ -55,23 +55,6 @@ router.post('/login', async (req, res) => {
 });
 
 // Save the score to the database
-router.post('/scores', async (req, res) => {
-  try {
-    const { score } = req.body;
-
-    // Create a new Score instance
-    const scoreEntry = new Score({
-      score,
-    });
-
-    // Save the score to the database
-    await scoreEntry.save();
-
-    res.status(200).json({ message: 'Score saved successfully' });
-  } catch (error) {
-    console.error('Failed to save score:', error);
-    res.status(500).json({ message: 'Score saving failed' });
-  }
-});
+// Route to handle the score submission
 
 module.exports = router;

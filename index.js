@@ -9,9 +9,11 @@ app.use(express.json());
 
 // Other middleware and route configurations
 const authRoutes = require('./routes/auth');
+const scoresRoutes = require('./routes/scoresRoutes');
+
 
 app.use(authRoutes);
-
+app.use(scoresRoutes);
 // Define the check-auth route
 app.get('/check-auth', (req, res) => {
   // Implement your authentication check logic here
